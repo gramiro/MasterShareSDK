@@ -12,8 +12,12 @@ How to use:
 2- Create an account to access the developer section.
 
 3- Search on the SDK files and select the implement file of the social network that you'll use.
-4- Modify the constants at the top of the implement file, fill with the developer data (i.e. CLIENTID, SECRETKEY ) that you received when you created the account on the API.
+
+4- Modify the constants at the top of the implement file, fill with the developer data (i.e. CLIENTID, SECRETKEY ) 
+that you received when you created the account on the API.
+
 5- Import "RMMasterSDK.h". It will give you access to the methods.
+
 6- Simply call a method in this way: [[RMMasterSDK SOCIAL-NETWORK] METHOD-TO-CALL];
 
 You will receive a response data, to handle this data, please go to the SDK file and find the method that your are using. 
