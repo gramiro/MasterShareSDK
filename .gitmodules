@@ -1,0 +1,12 @@
+[submodule "Examples/FoursquareSDKExample"]
+	path = Examples/FoursquareSDKExample
+	url = https://github.com/Zarph/FoursquareSDK
+[submodule "Examples/TumblrSDKExample"]
+	path = Examples/TumblrSDKExample
+	url = https://github.com/Zarph/TumblrSDK
+[submodule "Examples/InstagramSDKExample"]
+	path = Examples/InstagramSDKExample
+	url = https://github.com/msg-ios/InstagramSDKExample
+[submodule "Examples/YelpSDKExample"]
+	path = Examples/YelpSDKExample
+	url = https://github.com/msg-ios/YelpSDKExample
