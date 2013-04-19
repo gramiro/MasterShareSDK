@@ -7,7 +7,7 @@ Instead of creating web interfaces or server managers for every social API you u
 
 How to use:
 
-1- Establish what social network you will use.
+1- Establish what social network you will use.\n
 2- Create an account to access the developer section.
 3- Search on the SDK files and select the implement file of the social network that you'll use.
 4- Modify the constants at the top of the implement file, fill with the developer data (i.e. CLIENTID, SECRETKEY ) that you received when you created the account on the API.
