@@ -179,7 +179,6 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
         NSString *errorReason = [self.params valueForKey:@"error_reason"];
         
         //   BOOL userDidCancel = [errorReason isEqualToString:@"user_denied"];
-        //     [self igDidNotLogin:userDidCancel];
         
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                             message:errorReason
@@ -208,7 +207,9 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 	[[NSUserDefaults standardUserDefaults] synchronize];
     
     
-    //     [self igDidLogin:accessToken/* expirationDate:expirationDate*/];
+    //Uncomment the next line if you need to implement the delegate method performLoginFromHandle
+    //[_loginDelegate performLoginFromHandle];
+    
     return YES;
     
 }

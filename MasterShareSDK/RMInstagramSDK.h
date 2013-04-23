@@ -32,12 +32,8 @@
 
 #import "AFOAuth2Client.h"
 
-@protocol InstagramRequestsDelegate <NSObject>
-
-
-@end
-
-@protocol HandleURLLoginDelegate <NSObject>
+@protocol InstagramDelegate <NSObject>
+//-(void)performLoginFromHandle;
 
 
 @end
@@ -48,7 +44,7 @@
 @property (nonatomic, retain) NSDictionary *params;
 @property (nonatomic, retain) AFOAuthCredential *credential;
 @property (nonatomic, retain) NSArray *scopes;
-@property (nonatomic, strong) NSObject <HandleURLLoginDelegate> *loginDelegate;
+@property (nonatomic, strong) NSObject <InstagramDelegate> *loginDelegate;
 
 
 //Login-logout methods
