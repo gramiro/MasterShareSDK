@@ -36,7 +36,7 @@ static NSString * const kConsumerSecretString = @"";//COMPLETE WITH YOUR OWN CON
 static NSString * const kTokenString = @"";//COMPLETE WITH YOUR OWN TOKEN
 static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN SECRET
 
-//IMPORTANT NOTE: IT MIGHT BE NECESSARY TO COMMENT THE LINES 418 & 419 IN THE FILE AFOAuth1Client.m
+//IMPORTANT NOTE: IT MIGHT BE NECESSARY TO COMMENT THE LINES 418 & 419 IN THE FILE AFOAuth1Client.m, or NSParameterAssert errors may rise.
 
 @implementation RMYelpSDK
 
