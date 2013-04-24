@@ -1,12 +1,12 @@
-[submodule "Examples/FoursquareSDKExample"]
-	path = Examples/FoursquareSDKExample
-	url = https://github.com/Zarph/FoursquareSDK
-[submodule "Examples/TumblrSDKExample"]
-	path = Examples/TumblrSDKExample
-	url = https://github.com/Zarph/TumblrSDK
-[submodule "Examples/InstagramSDKExample"]
-	path = Examples/InstagramSDKExample
-	url = https://github.com/msg-ios/InstagramSDKExample
-[submodule "Examples/YelpSDKExample"]
-	path = Examples/YelpSDKExample
-	url = https://github.com/msg-ios/YelpSDKExample
+[submodule "Examples/InstagramExample"]
+	path = Examples/InstagramExample
+	url = https://github.com/msg-ios/InstagramExample
+[submodule "Examples/YelpExample"]
+	path = Examples/YelpExample
+	url = https://github.com/msg-ios/YelpExample
+[submodule "Examples/FoursquareExample"]
+	path = Examples/FoursquareExample
+	url = https://github.com/msg-ios/FoursquareExample
+[submodule "Examples/TumblrExample"]
+	path = Examples/TumblrExample
+	url = https://github.com/msg-ios/TumblrExample
