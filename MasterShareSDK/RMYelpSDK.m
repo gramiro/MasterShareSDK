@@ -70,7 +70,9 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        [mutableParameters setValue:term forKey:@"term"];
+        if (term)
+            [mutableParameters setValue:term forKey:@"term"];
+        
         [mutableParameters setValue:location forKey:@"location"];
         
         NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -113,7 +115,8 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        [mutableParameters setValue:term forKey:@"term"];
+        if (term)
+            [mutableParameters setValue:term forKey:@"term"];
         
         NSString *boundsString = [NSString stringWithFormat:@"%@,%@|%@,%@", [boundsParams objectForKey:@"sw_latitude"],[boundsParams objectForKey:@"sw_longitude"],[boundsParams objectForKey:@"ne_latitude"],[boundsParams objectForKey:@"ne_longitude"]];
         
@@ -159,7 +162,8 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        [mutableParameters setValue:term forKey:@"term"];
+        if (term)
+            [mutableParameters setValue:term forKey:@"term"];
         
         NSMutableArray *locationArray = [NSMutableArray array];
         
@@ -215,7 +219,9 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        [mutableParameters setValue:term forKey:@"term"];
+        if (term)
+            [mutableParameters setValue:term forKey:@"term"];
+        
         [mutableParameters setValue:location forKey:@"location"];
         
         NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", latitude, longitude];
