@@ -33,4 +33,8 @@
     
 }
 
++(RMFacebookSDK *) FacebookSDK{
+    return [RMFacebookSDK sharedClient];
+}
+
 @end
