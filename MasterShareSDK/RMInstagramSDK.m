@@ -2,31 +2,9 @@
 //  RMInstagramSDK.m
 //  MasterShareSDK
 //
-//  Created by Ramiro Guerrero & Marco Graciano on 18/04/13.
+//  Created by Marco Graciano on 18/04/13.
+//  Copyright (c) 2013 Marco Graciano. All rights reserved.
 //
-//    Copyright (c) 2013 Weston McBride
-//
-//    Permission is hereby granted, free of charge, to any
-//    person obtaining a copy of this software and associated
-//    documentation files (the "Software"), to deal in the
-//    Software without restriction, including without limitation
-//    the rights to use, copy, modify, merge, publish,
-//    distribute, sublicense, and/or sell copies of the
-//    Software, and to permit persons to whom the Software is
-//    furnished to do so, subject to the following conditions:
-//
-//    The above copyright notice and this permission notice
-//    shall be included in all copies or substantial portions of
-//    the Software.
-//
-//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-//    KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-//    WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-//    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
-//    OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-//    OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-//    OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-//    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "RMInstagramSDK.h"
 #import "AFOAuth2Client.h"
@@ -179,6 +157,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
         NSString *errorReason = [self.params valueForKey:@"error_reason"];
         
         //   BOOL userDidCancel = [errorReason isEqualToString:@"user_denied"];
+        //     [self igDidNotLogin:userDidCancel];
         
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                             message:errorReason
@@ -207,9 +186,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 	[[NSUserDefaults standardUserDefaults] synchronize];
     
     
-    //Uncomment the next line if you need to implement the delegate method performLoginFromHandle
-    //[_loginDelegate performLoginFromHandle];
-    
+    //     [self igDidLogin:accessToken/* expirationDate:expirationDate*/];
     return YES;
     
 }
@@ -234,7 +211,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 
 #pragma mark - INSTAGRAM API REQUESTS
 //USERS ENDPOINT
--(void)getUserInfoWithUserID:(NSString *)userID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getUserInfoWithUserID:(NSString *)userID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -254,7 +231,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)getAuthenticatedUserFeedWithParameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getAuthenticatedUserFeedWithParameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -273,7 +250,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     }];
 }
 
--(void)getUserMediaWithUserID:(NSString *)userID Parameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getUserMediaWithUserID:(NSString *)userID Parameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -293,7 +270,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)getAuthenticatedUserLikedMediaWithParameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getAuthenticatedUserLikedMediaWithParameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -313,7 +290,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)searchUserWithQuery:(NSString *)query AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)searchUserWithQuery:(NSString *)query AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     [mutableParameters setValue:query forKey:@"q"];
@@ -336,7 +313,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 
 //RELATIONSHIPS ENDPOINT
 
--(void)getFollowedByWithUserId:(NSString *)userID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getFollowedByWithUserId:(NSString *)userID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
@@ -357,7 +334,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 
--(void)getRequestedByWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getRequestedByWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -378,7 +355,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     }];
 }
 
--(void)getFollowsWithUserId:(NSString *)userID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getFollowsWithUserId:(NSString *)userID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     
     
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
@@ -401,7 +378,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 
--(void)getRelationshipWithUserID:(NSString *)userID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getRelationshipWithUserID:(NSString *)userID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -422,7 +399,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 
--(void)postRelationshipWithAction:(NSString *)action UserId:(NSString *)userID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)postRelationshipWithAction:(NSString *)action UserId:(NSString *)userID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
@@ -442,7 +419,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 //MEDIA ENDPOINT
--(void)getMediaWithMediaID:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getMediaWithMediaID:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -462,7 +439,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)getMediaSearchWithParams:(NSDictionary *)mediaParams AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getMediaSearchWithParams:(NSDictionary *)mediaParams AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:mediaParams];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     
@@ -483,7 +460,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)getPopularMediaWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getPopularMediaWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -503,31 +480,9 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
-//MEDIA ENDPOINT: METHODS WITHOUT AUTHENTICATION
--(void)getWAMediaSearchWithParams:(NSDictionary *)mediaParams AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
-    NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:mediaParams];
-    [mutableParameters setValue:kClientIDString forKey:@"client_id"];
-    
-    NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
-    
-    NSString *path =  [NSString stringWithFormat:@"%@media/search", kServerAPIURL];
-    
-    [self getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"MEDIA SEARCH GET REQUEST");
-        NSLog(@"Response object: %@", responseObject);
-        //Complete with delegate call
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        
-    }];
-    
-}
-
 
 //COMMENTS ENDPOINT
--(void)getCommentsWithMediaID:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getCommentsWithMediaID:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -547,7 +502,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)postCommentWithMediaID:(NSString *)mediaID Text:(NSString *)text AndWithDelegate :(NSObject<InstagramDelegate> *)delegate {
+-(void)postCommentWithMediaID:(NSString *)mediaID Text:(NSString *)text AndWithDelegate :(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     [mutableParameters setValue:text forKey:@"text"];
@@ -567,7 +522,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)deleteCommentWithCommentID:(NSString *)commentID MediaID:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)deleteCommentWithCommentID:(NSString *)commentID MediaID:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     [mutableParameters setValue:@"DELETE" forKey:@"_method"]; //SIMULATE A DELETE METHOD ON INSTAGRAM
@@ -591,7 +546,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 
 //LIKES ENDPOINT
 
--(void)getLikesOfMediaId:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getLikesOfMediaId:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -612,7 +567,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 
--(void)postLikeOnMediaWithMediaId:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)postLikeOnMediaWithMediaId:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -633,7 +588,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 
--(void)removeLikeOnMediaWithMediaId:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)removeLikeOnMediaWithMediaId:(NSString *)mediaID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
@@ -655,7 +610,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 
 
 //TAGS ENDPOINT
--(void)getTagInfoWithTagName:(NSString *)tagString AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getTagInfoWithTagName:(NSString *)tagString AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -675,7 +630,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)getRecentTags:(NSString *)tagID WithParams:(NSDictionary *)tagParams AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getRecentTags:(NSString *)tagID WithParams:(NSDictionary *)tagParams AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:tagParams];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -695,7 +650,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)getSearchTagsWithTagName:(NSString *)tagString AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getSearchTagsWithTagName:(NSString *)tagString AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     [mutableParameters setValue:tagString forKey:@"q"];
@@ -717,7 +672,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 
 
 //LOCATIONS ENDPOINT
--(void)getLocationInfoWithLocationID:(NSString *)locationID AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getLocationInfoWithLocationID:(NSString *)locationID AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -738,7 +693,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 }
 
 
--(void)getLocationRecentMediaWithLocationID:(NSString *)locationID Parameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getLocationRecentMediaWithLocationID:(NSString *)locationID Parameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -758,7 +713,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
     
 }
 
--(void)searchLocationWithParameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)searchLocationWithParameters:(NSDictionary *)params AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
     [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -781,7 +736,7 @@ static NSString * const kClientSecretString = @"";//COMPLETE WITH YOUR OWN CLIEN
 
 //GEOGRAPHIES ENDPOINT
 
--(void)getGeoWithGeoId:(NSString *)geoId WithParams:(NSDictionary *)geoParams AndWithDelegate:(NSObject<InstagramDelegate> *)delegate {
+-(void)getGeoWithGeoId:(NSString *)geoId WithParams:(NSDictionary *)geoParams AndWithDelegate:(NSObject<InstagramRequestsDelegate> *)delegate {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:geoParams];
     // [mutableParameters setValue:self.credential.accessToken forKey:@"access_token"];
     [mutableParameters setValue:self.clientID forKey:@"client_id"];

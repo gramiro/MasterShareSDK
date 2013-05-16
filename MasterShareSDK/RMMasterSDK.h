@@ -13,6 +13,11 @@
 #import "RMYelpSDK.h"
 #import "RMTwitterSDK.h"
 #import "RMFacebookSDK.h"
+#import "RMLinkedInSDK.h"
+#import "RMGooglePlusSDK.h"
+#import "RMDeviantArtSDK.h"
+#import "RMOrkutSDK.h"
+
 @interface RMMasterSDK : NSObject
 
 +(RMTumblrSDK *) TumblrSDK;
@@ -21,5 +26,9 @@
 +(RMYelpSDK *) YelpSDK;
 +(RMTwitterSDK *) TwitterSDK;
 +(RMFacebookSDK *) FacebookSDK;
++(RMLinkedInSDK *) LinkedInSDK;
++(RMGooglePlusSDK *) GooglePlusSDK;
++(RMDeviantArtSDK *) DeviantArtSDK;
++(RMOrkutSDK *) OrkutSDK;
 
 @end

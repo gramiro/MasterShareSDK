@@ -37,4 +37,21 @@
     return [RMFacebookSDK sharedClient];
 }
 
++(RMLinkedInSDK *) LinkedInSDK{
+    return [RMLinkedInSDK sharedClient];
+
+}
+
++(RMGooglePlusSDK *) GooglePlusSDK{
+    return [RMGooglePlusSDK sharedClient];
+}
+
++(RMDeviantArtSDK *) DeviantArtSDK{
+    return [RMDeviantArtSDK sharedClient];
+}
+
++(RMOrkutSDK *) OrkutSDK{
+    return [RMOrkutSDK sharedClient];
+
+}
 @end

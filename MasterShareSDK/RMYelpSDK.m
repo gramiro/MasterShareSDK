@@ -2,41 +2,18 @@
 //  RMYelpSDK.m
 //  MasterShareSDK
 //
-//  Created by Ramiro Guerrero & Marco Graciano on 18/04/13.
+//  Created by Ramiro Guerrero on 18/04/13.
+//  Copyright (c) 2013 Ramiro Guerrero. All rights reserved.
 //
-//    Copyright (c) 2013 Weston McBride
-//
-//    Permission is hereby granted, free of charge, to any
-//    person obtaining a copy of this software and associated
-//    documentation files (the "Software"), to deal in the
-//    Software without restriction, including without limitation
-//    the rights to use, copy, modify, merge, publish,
-//    distribute, sublicense, and/or sell copies of the
-//    Software, and to permit persons to whom the Software is
-//    furnished to do so, subject to the following conditions:
-//
-//    The above copyright notice and this permission notice
-//    shall be included in all copies or substantial portions of
-//    the Software.
-//
-//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-//    KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-//    WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-//    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
-//    OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-//    OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-//    OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-//    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "RMYelpSDK.h"
 
 static NSString * const kOAuth1BaseURLString = @"http://api.yelp.com/v2/";
-static NSString * const kConsumerKeyString = @"";//COMPLETE WITH YOUR OWN CONSUMER KEY
-static NSString * const kConsumerSecretString = @"";//COMPLETE WITH YOUR OWN CONSUMER SECRET
-static NSString * const kTokenString = @"";//COMPLETE WITH YOUR OWN TOKEN
-static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN SECRET
+static NSString * const kConsumerKeyString = @"";//FILL IN WITH YOUR OWN CONSUMER KEY
+static NSString * const kConsumerSecretString = @"";//FILL IN WITH YOUR OWN CONSUMER SECRET
+static NSString * const kTokenString = @"";//FILL IN WITH YOUR OWN TOKEN
+static NSString * const kTokenSecretString = @"";//FILL IN WITH YOUR OWN TOKEN SECRET
 
-//IMPORTANT NOTE: IT MIGHT BE NECESSARY TO COMMENT THE LINES 418 & 419 IN THE FILE AFOAuth1Client.m, or NSParameterAssert errors may rise.
 
 @implementation RMYelpSDK
 
@@ -70,9 +47,7 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        if (term)
-            [mutableParameters setValue:term forKey:@"term"];
-        
+        [mutableParameters setValue:term forKey:@"term"];
         [mutableParameters setValue:location forKey:@"location"];
         
         NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
@@ -115,8 +90,7 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        if (term)
-            [mutableParameters setValue:term forKey:@"term"];
+        [mutableParameters setValue:term forKey:@"term"];
         
         NSString *boundsString = [NSString stringWithFormat:@"%@,%@|%@,%@", [boundsParams objectForKey:@"sw_latitude"],[boundsParams objectForKey:@"sw_longitude"],[boundsParams objectForKey:@"ne_latitude"],[boundsParams objectForKey:@"ne_longitude"]];
         
@@ -162,8 +136,7 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        if (term)
-            [mutableParameters setValue:term forKey:@"term"];
+        [mutableParameters setValue:term forKey:@"term"];
         
         NSMutableArray *locationArray = [NSMutableArray array];
         
@@ -219,9 +192,7 @@ static NSString * const kTokenSecretString = @"";//COMPLETE WITH YOUR OWN TOKEN 
             mutableParameters = [NSMutableDictionary dictionaryWithDictionary:params];
         
         
-        if (term)
-            [mutableParameters setValue:term forKey:@"term"];
-        
+        [mutableParameters setValue:term forKey:@"term"];
         [mutableParameters setValue:location forKey:@"location"];
         
         NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", latitude, longitude];
